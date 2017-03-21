@@ -12,7 +12,7 @@ def main():
 def index():
   return render_template('index.html')
 
-@app.rout('/ticker_plot', methods=['POST'])
+@app.route('/ticker_plot', methods=['POST'])
 def plot_result():
 	app.vars['stock_name'] = request.form['stock_name']
 	return render_template('ticker_plot.html', name=app.vars['stock_name'])
