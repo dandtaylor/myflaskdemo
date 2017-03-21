@@ -2,14 +2,25 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Hello, World!</title>
+		<title>Stock Market price data</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	</head>
 	<body>
 		<div>
-  			<h1>Hello, World!</h1>
+  			<h1>Stock Market</h1>
+  			<h4> Enter a stock ticker. </h4>
+     
+
+    <form id='ticker_info' method='post' action='ticker_plot' >
+      <p>
+    Stock Ticker: <input type='text' name='name_lulu' />
+      </p>
+      <p>
+    <input type='submit' value='Plot!' />
+      </p>
+    </form>
 		</div>
 	</body>
 </html>
