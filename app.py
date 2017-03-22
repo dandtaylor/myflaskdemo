@@ -3,6 +3,11 @@ import requests
 import pandas as pd
 import simplejson as json
 
+from bokeh.plotting import figure
+from bokeh.embed import components
+from bokeh.charts import TimeSeries
+from bokeh.resources import CDN
+
 app = Flask(__name__)
 
 app.vars = {}
@@ -19,8 +24,10 @@ def index():
 @app.route('/ticker_plot', methods=['POST'])
 def plot_result():
 	app.vars['stock_name'] = request.form['stock_name']
-	payload = {'date.gte': '20170101', 'ticker': app.vars['stock_name'], 'api_key': app.api_key}
-	r = requests.get('https://www.quandl.com/api/v3/datatables/WIKI/PRICES.json?', params=payload)
+	payload = {'date.gte': '20170101', 'ticker': app.vars['stock_name'],
+                'api_key': app.api_key}
+	r = requests.get('https://www.quandl.com/api/v3/datatables/WIKI/PRICES.json?',
+                    params=payload)
 	app.url = r.url
 
 	columns = []
@@ -33,7 +40,12 @@ def plot_result():
 	name = df.ix[0, 'ticker']
 	open_price = df.ix[0, 'open']
 
-	return render_template('ticker_plot.html', name=name, date=date, open_price=open_price)
+	data = dict(df=df['close'], Date=df['date'])
+	p = TimeSeries(data, x='Date', title="Closing price since Jan 3, 2017", ylabel='Closing Stock Prices')
+	script, div  = components(p)
+
+	return render_template('ticker_plot.html', name=name, date=date,
+                            open_price=open_price, plot_script=script, plot_div=div)
 
 
 if __name__ == '__main__':

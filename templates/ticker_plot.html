@@ -6,12 +6,24 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<link
+    		href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.4.min.css"
+    		rel="stylesheet" type="text/css">
+		<link
+    		href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.4.min.css"
+    		rel="stylesheet" type="text/css">
+
+		<script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.4.min.js"></script>
+		{{plot_script|safe}}
 	</head>
 	<body>
 		<div>
   			<h1>Stock Market</h1>
   			<h4> On {{date}}, {{name}} opened at {{open_price}} </h4>
-     
+				<h4> test test test </h4>
 		</div>
+		<div class='bokeh'>
+  		 {{plot_div|safe}}
+  		</div>
 	</body>
 </html>
