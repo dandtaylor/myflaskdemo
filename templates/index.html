@@ -9,15 +9,26 @@
 	</head>
 	<body>
 		<div>
-		
+
   			<h1>Mini Stock Prices</h1>
   			<h4> Enter a stock ticker. </h4>
      
 
     <form id='ticker_info' method='post' action='ticker_plot' >
       <p>
-    Stock Ticker: <input type='text' name='stock_name' />
+    Stock Ticker (example: TSLA): <input type='text' name='stock_name' />
       </p>
+      <p>
+    Start date (yyymmdd example: 20160101): <input type='text' name='start_date' />
+      </p>
+      <p>
+          What would you like to plot?: <br />
+          <input type='radio' name='plot_data' value='open' /> opening price <br />
+          <input type='radio' name='plot_data' value='high' /> high price of the day <br />
+          <input type='radio' name='plot_data' value='low' /> low price of the day <br />
+          <input type='radio' name='plot_data' value='close' /> closing price <br />
+          <input type='radio' name='plot_data' value='volume' /> trade volume <br />
+        </p>
       <p>
     <input type='submit' value='Plot!' />
       </p>
