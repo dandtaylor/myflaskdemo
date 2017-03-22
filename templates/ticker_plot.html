@@ -17,6 +17,12 @@
 		{{plot_script|safe}}
 	</head>
 	<body>
+	<button onclick="goBack()">Go Back</button>
+		<script>
+		function goBack() {
+    						window.history.back();
+							}
+		</script>
 		<div>
   			<h1>Stock Market</h1>
   			<h4> On {{date}}, {{name}} opened at {{open_price}} </h4>

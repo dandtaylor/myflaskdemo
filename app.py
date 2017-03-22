@@ -2,12 +2,10 @@ from flask import Flask, render_template, request, redirect
 import requests
 import pandas as pd
 import numpy as np
-#import simplejson as json
 
 from bokeh.plotting import figure
 from bokeh.embed import components
 from bokeh.charts import TimeSeries
-#from bokeh.resources import CDN
 
 app = Flask(__name__)
 
