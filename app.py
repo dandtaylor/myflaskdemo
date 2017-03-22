@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request, redirect
 import requests
 import pandas as pd
-import simplejson as json
+#import simplejson as json
 
 from bokeh.plotting import figure
 from bokeh.embed import components
 from bokeh.charts import TimeSeries
-from bokeh.resources import CDN
+#from bokeh.resources import CDN
 
 app = Flask(__name__)
 
@@ -41,7 +41,14 @@ def plot_result():
 	open_price = df.ix[0, 'open']
 
 	data = dict(df=df['close'], Date=df['date'])
-	p = TimeSeries(data, x='Date', title="Closing price since Jan 3, 2017", ylabel='Closing Stock Prices')
+	p = figure(x_axis_type='datetime', title='Closing prices for %s' % app.vars['stock_name'].upper(), 
+				plot_width=300, plot_height=300)
+	p.grid.grid_line_alpha = 0.3
+	p.xaxis.axis_label = 'Date'
+	p.yaxis.axis_label = 'Closing Price'
+	p.line(df['date'], df['close'], color='red')
+	#p = TimeSeries(data, x='Date', title='Closing prices for %s' % app.vars['stock_name'].upper(),
+	#			 ylabel='Closing Stock Prices', legend=False)
 	script, div  = components(p)
 
 	return render_template('ticker_plot.html', name=name, date=date,
